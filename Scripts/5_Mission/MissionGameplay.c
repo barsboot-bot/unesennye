@@ -1,4 +1,4 @@
-// Author: KRa Tos (Константин) | Project: Unesennye Music System v1.2.3
+// Author: KRa Tos (Константин) | Project: Unesennye Music System v1.2.4
 // Do not remove this header. Unauthorized redistribution is prohibited.
 
 modded class MissionGameplay
@@ -13,7 +13,6 @@ modded class MissionGameplay
 	override void OnMissionStart()
 	{
 		super.OnMissionStart();
-		// Start handshake shortly after world load
 		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(StartHS, 2000, false);
 	}
 
@@ -35,20 +34,48 @@ modded class MissionGameplay
 				break;
 
 			case UnesennyeConstants.BROADCAST_PLAY:
-			case UnesennyeConstants.RADIO_BROADCAST:
-			case UnesennyeConstants.ALBUM_BROADCAST:
-				// TODO: play local sound from music_db using received track/playlistId
+			{
+				Param1<string> playData;
+				if (ctx.Read(playData))
+					UnesennyeClientManager.GetInstance().PlaySoundSet(playData.param1);
 				break;
+			}
+
+			case UnesennyeConstants.RADIO_BROADCAST:
+			{
+				// Param3: playlistId, trackName, soundSetName
+				Param3<int, string, string> radioData;
+				if (ctx.Read(radioData))
+				{
+					string soundSet = radioData.param3;
+					if (soundSet == "")
+						soundSet = radioData.param2;
+					UnesennyeClientManager.GetInstance().PlaySoundSet(soundSet);
+				}
+				break;
+			}
+
+			case UnesennyeConstants.ALBUM_BROADCAST:
+			{
+				Param1<string> albumData;
+				if (ctx.Read(albumData))
+					UnesennyeClientManager.GetInstance().PlaySoundSet(albumData.param1);
+				break;
+			}
 
 			case UnesennyeConstants.BROADCAST_STOP:
 			case UnesennyeConstants.RADIO_BROADCAST_STOP:
-				// TODO: stop local sound
+				UnesennyeClientManager.GetInstance().StopSound();
 				break;
 
 			case UnesennyeConstants.TRACK_LIST_RESP:
 			case UnesennyeConstants.ALBUM_TRACKLIST_RESP:
-				// TODO: update UI track list
+			{
+				Param1<string> listData;
+				if (ctx.Read(listData))
+					Print("[Unesennye Client] Track list: " + listData.param1);
 				break;
+			}
 		}
 
 		super.OnRPC(sender, target, rpc_type, ctx);

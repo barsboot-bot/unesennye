@@ -1,4 +1,4 @@
-// Author: KRa Tos (Константин) | Project: Unesennye Music System v1.2.3
+// Author: KRa Tos (Константин) | Project: Unesennye Music System v1.2.4
 // Do not remove this header. Unauthorized redistribution is prohibited.
 
 class UnesennyeClientManager
@@ -7,7 +7,7 @@ class UnesennyeClientManager
 
 	protected bool m_IsAuthorized = false;
 	protected int  m_HsAttempts   = 0;
-	protected ref Timer m_HsTimer;
+	protected EffectSound m_CurrentSound;
 
 	static UnesennyeClientManager GetInstance()
 	{
@@ -25,25 +25,22 @@ class UnesennyeClientManager
 	{
 		m_IsAuthorized = false;
 		m_HsAttempts   = 0;
-
 		SendHandshakeRequest();
-
-		m_HsTimer = new Timer(CALL_CATEGORY_SYSTEM);
-		m_HsTimer.Run(UnesennyeConstants.HS_CHECK_INTERVAL / 1000.0, this, "OnHandshakeTick", null, true);
+		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(OnHandshakeTick, UnesennyeConstants.HS_CHECK_INTERVAL, true);
 	}
 
 	void OnHandshakeTick()
 	{
 		if (m_IsAuthorized)
 		{
-			if (m_HsTimer) m_HsTimer.Stop();
+			GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Remove(OnHandshakeTick);
 			return;
 		}
 
 		m_HsAttempts++;
 		if (m_HsAttempts * UnesennyeConstants.HS_CHECK_INTERVAL >= UnesennyeConstants.HS_TIMEOUT_MS)
 		{
-			if (m_HsTimer) m_HsTimer.Stop();
+			GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Remove(OnHandshakeTick);
 			BlockAndDisconnect();
 			return;
 		}
@@ -59,7 +56,7 @@ class UnesennyeClientManager
 	void OnHandshakeResponse()
 	{
 		m_IsAuthorized = true;
-		if (m_HsTimer) m_HsTimer.Stop();
+		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).Remove(OnHandshakeTick);
 		Print("[Unesennye Client] Handshake OK | Author: " + UnesennyeConstants.AUTHOR);
 	}
 
@@ -67,7 +64,13 @@ class UnesennyeClientManager
 	{
 		m_IsAuthorized = false;
 		Print("[Unesennye Client] " + UnesennyeConstants.DISCONNECT_MSG);
+		// Show message first, disconnect after short delay
 		GetGame().GetUIManager().ShowDialog("Unesennye", UnesennyeConstants.DISCONNECT_MSG, 0, DBT_OK, DBB_OK, DMT_EXCLAMATION, null);
+		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(DoForceDisconnect, 1500, false);
+	}
+
+	void DoForceDisconnect()
+	{
 		GetGame().DisconnectSessionForce();
 	}
 
@@ -76,7 +79,6 @@ class UnesennyeClientManager
 		return m_IsAuthorized;
 	}
 
-	// ---- SD Card helpers ----
 	void InsertSDCard(Object target, string cardClass, int playlistId)
 	{
 		if (!IsAuthorized()) return;
@@ -101,5 +103,37 @@ class UnesennyeClientManager
 	{
 		if (!IsAuthorized()) return;
 		GetGame().RPCSingleParam(target, UnesennyeConstants.RADIO_STOP_TRACK, null, true, null);
+	}
+
+	// ---- Local sound playback ----
+	void PlaySoundSet(string soundSetName)
+	{
+		StopSound();
+		if (soundSetName == "")
+			return;
+
+		PlayerBase player = PlayerBase.Cast(GetGame().GetPlayer());
+		if (!player)
+			return;
+
+		m_CurrentSound = SEffectManager.PlaySound(soundSetName, player.GetPosition());
+		if (m_CurrentSound)
+		{
+			m_CurrentSound.SetSoundAutodestroy(true);
+			Print("[Unesennye Client] Playing SoundSet: " + soundSetName);
+		}
+		else
+		{
+			Print("[Unesennye Client] Failed to play SoundSet: " + soundSetName + " (missing in music_db?)");
+		}
+	}
+
+	void StopSound()
+	{
+		if (m_CurrentSound)
+		{
+			m_CurrentSound.SoundStop();
+			m_CurrentSound = null;
+		}
 	}
 };

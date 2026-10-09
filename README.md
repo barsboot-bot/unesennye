@@ -1,28 +1,20 @@
-# UNESENNYE MUSIC SYSTEM v1.2.3 — Client Mod
+# UNESENNYE MUSIC SYSTEM v1.2.4 — Client Mod
 
 **Author:** KRa Tos (Константин)  
-**Version:** 1.2.3  
-**Requires:** `@unesennye_servermod` on the server
+**Version:** 1.2.4  
+**Requires server:** `@unesennye_servermod`
 
----
+## Fixes in 1.2.4
+- SD card items only here (no duplicate on server)
+- Full `attachments[]` override instead of unreliable `+=`
+- Real SoundSet playback via SEffectManager
+- Handshake uses CallQueue; disconnect delayed so dialog can show
+- RADIO_BROADCAST reads Param3&lt;playlistId, track, soundSet&gt;
+- Removed fragile DZ_Radio requiredAddon
 
-## Features
-
-- Handshake Protocol (4 s timeout → force disconnect if server mod missing)
-- SD Card support for PersonalRadio and cars
-- Car radio play/stop
-- Walkie-talkie insert/eject/play
-- Album next/prev/set track
-- All RPC IDs aligned with server (100–406)
-
-## Installation
-
+## Launch (client)
 ```
 -mod=@unesennye;@unesennye_music_db
 ```
-Server must also load `@unesennye_servermod`.
 
-## Author
-
-**KRa Tos (Константин)**  
-Unauthorized redistribution or removal of credits is prohibited.
+**Author:** KRa Tos (Константин)
