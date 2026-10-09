@@ -8,6 +8,12 @@ STR_Unesennye_Cassette,Cassette,Cassette,Кассета
 STR_Unesennye_Cassette_Desc,Audio cassette for Unesennye players.,Audio cassette for Unesennye players.,Аудиокассета для плееров Unesennye.
 STR_Unesennye_Disk,Disk,Disk,Диск
 STR_Unesennye_Disk_Desc,Music disk for Unesennye players.,Music disk for Unesennye players.,Музыкальный диск для плееров Unesennye.
+STR_Unesennye_CD,CD,CD,CD
+STR_Unesennye_CD_Desc,Compact Disc for Unesennye players. Quantity = playlist ID.,Compact Disc for Unesennye players. Quantity = playlist ID.,Компакт-диск для плееров Unesennye. Quantity = ID плейлиста.
+STR_Unesennye_DVD,DVD,DVD,DVD
+STR_Unesennye_DVD_Desc,DVD for Unesennye players. Quantity = playlist ID.,DVD for Unesennye players. Quantity = playlist ID.,DVD для плееров Unesennye. Quantity = ID плейлиста.
+STR_Unesennye_DVD_R,DVD-R,DVD-R,DVD-R
+STR_Unesennye_DVD_R_Desc,Recordable DVD for Unesennye players. Quantity = playlist ID.,Recordable DVD for Unesennye players. Quantity = playlist ID.,Записываемый DVD для плееров Unesennye. Quantity = ID плейлиста.
 STR_Unesennye_Action_Insert,Insert media,Insert media,Вставить носитель
 STR_Unesennye_Action_Eject,Eject media,Eject media,Извлечь носитель
 STR_Unesennye_Action_Play,Play track,Play track,Воспроизвести

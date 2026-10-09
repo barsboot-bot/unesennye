@@ -1,5 +1,5 @@
 name = "Unesennye Music System";
 author = "KRa Tos (Константин)";
-version = "1.3.2";
+version = "1.3.3";
 overrides = 0;
 dir = "unesennye";

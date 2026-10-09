@@ -1,44 +1,24 @@
-# Текстуры предметов Unesennye
+# Текстуры Unesennye
 
 **Автор:** KRa Tos (Константин)
 
-## Предметы
+## Список
 
-| Текстура | Предмет |
-|----------|--------|
-| `sd_card_co.paa` | SD-карта с музыкой |
-| `sd_card_empty_co.paa` | Пустая SD-карта |
+| Файл .paa | Предмет |
+|-----------|--------|
+| `sd_card_co.paa` | SD-карта |
+| `sd_card_empty_co.paa` | Пустая SD |
 | `cassette_co.paa` | Кассета |
 | `disk_co.paa` | Диск |
+| `cd_co.paa` | CD |
+| `dvd_co.paa` | DVD |
+| `dvd_r_co.paa` | DVD-R |
 
-## Как получить .paa
-
-### Вариант A — генератор (Python + Pillow)
+## Генерация
 
 ```bat
 pip install Pillow
 python tools\generate_item_textures.py
 ```
 
-Появятся `.png` и `.tga` в этой папке.
-
-### Вариант B — встроенные PNG
-
-```bat
-python tools\install_textures.py
-```
-
-### Конвертация в PAA (обязательно для игры)
-
-1. Откройте **DayZ Tools → TexView2**
-2. File → Open → каждый `.png` или `.tga`
-3. File → Save As → тип **PAA**
-4. Имена должны быть:
-   - `sd_card_co.paa`
-   - `sd_card_empty_co.paa`
-   - `cassette_co.paa`
-   - `disk_co.paa`
-5. Сохраните в `data/textures/`
-6. Упакуйте мод в PBO
-
-Без `.paa` предметы могут отображаться розовыми/белыми.
+Создаст PNG и TGA. Конвертируйте в **PAA** через DayZ TexView2 и положите сюда.

@@ -1,31 +1,31 @@
-# UNESENNYE CLIENT v1.3.2
+# UNESENNYE CLIENT v1.3.3
 
 **Автор:** KRa Tos (Константин)
 
-Клиентский мод системы музыки Unesennye.
+## Носители
 
-**Требует** `@unesennye_servermod` на сервере.
+- SD-карта / пустая SD
+- Кассета
+- Диск
+- **CD**
+- **DVD**
+- **DVD-R**
 
-## Текстуры предметов (v1.3.2)
+Quantity = ID плейлиста.
 
-Папка `data/textures/` + материалы `data/materials/`.
+## Текстуры
 
-1. `python tools/generate_item_textures.py` (нужен Pillow) **или** `python tools/install_textures.py`
-2. Конвертация PNG/TGA → **PAA** в DayZ TexView2
-3. Упаковка PBO
+```bat
+pip install Pillow
+python tools\generate_item_textures.py
+```
 
-Подробнее: `data/textures/README_TEXTURES.md`
+Затем PNG/TGA → **PAA** в TexView2 → `data/textures/`.
+
+См. `data/textures/README_TEXTURES.md`.
 
 ## GUI
 
-`gui/layouts/unesennye_music.layout` — меню выбора треков.
+Действие **Open Unesennye Music** на рации/машине.
 
-Действие: **Open Unesennye Music** на рации/машине со слотом SD.
-
-## Предметы
-
-- SD-карта / пустая SD-карта
-- Кассета
-- Диск
-
-**Автор:** KRa Tos (Константин)
+Требует `@unesennye_servermod`.

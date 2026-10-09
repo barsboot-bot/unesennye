@@ -1,11 +1,20 @@
-// Author: KRa Tos (Константин) | Project: Unesennye Music System v1.3.2
+// Author: KRa Tos (Константин) | Project: Unesennye Music System v1.3.3
 // Do not remove this header. Unauthorized redistribution is prohibited.
 
 class CfgPatches
 {
 	class unesennye
 	{
-		units[] = {"Unesennye_SD_Card", "Unesennye_SD_Card_Empty", "Unesennye_Cassette", "Unesennye_Disk"};
+		units[] =
+		{
+			"Unesennye_SD_Card",
+			"Unesennye_SD_Card_Empty",
+			"Unesennye_Cassette",
+			"Unesennye_Disk",
+			"Unesennye_CD",
+			"Unesennye_DVD",
+			"Unesennye_DVD_R"
+		};
 		weapons[] = {};
 		requiredVersion = 0.1;
 		requiredAddons[] = {"DZ_Data", "DZ_Scripts", "DZ_Gear_Tools", "DZ_Vehicles_Wheeled"};
@@ -20,7 +29,7 @@ class CfgMods
 		name = "Unesennye Music System";
 		credits = "KRa Tos (Константин)";
 		author = "KRa Tos (Константин)";
-		version = "1.3.2";
+		version = "1.3.3";
 		type = "mod";
 		dependencies[] = {"Game", "World", "Mission"};
 		class defs
@@ -46,7 +55,6 @@ class CfgVehicles
 {
 	class Inventory_Base;
 
-	// ---- Базовый класс носителя ----
 	class Unesennye_Media_Base : Inventory_Base
 	{
 		scope = 0;
@@ -99,6 +107,36 @@ class CfgVehicles
 		varQuantityInit = 1;
 		hiddenSelectionsTextures[] = {"unesennye\data\textures\disk_co.paa"};
 		hiddenSelectionsMaterials[] = {"unesennye\data\materials\disk.rvmat"};
+	};
+
+	class Unesennye_CD : Unesennye_Media_Base
+	{
+		scope = 2;
+		displayName = "$STR_Unesennye_CD";
+		descriptionShort = "$STR_Unesennye_CD_Desc";
+		varQuantityInit = 1;
+		hiddenSelectionsTextures[] = {"unesennye\data\textures\cd_co.paa"};
+		hiddenSelectionsMaterials[] = {"unesennye\data\materials\cd.rvmat"};
+	};
+
+	class Unesennye_DVD : Unesennye_Media_Base
+	{
+		scope = 2;
+		displayName = "$STR_Unesennye_DVD";
+		descriptionShort = "$STR_Unesennye_DVD_Desc";
+		varQuantityInit = 1;
+		hiddenSelectionsTextures[] = {"unesennye\data\textures\dvd_co.paa"};
+		hiddenSelectionsMaterials[] = {"unesennye\data\materials\dvd.rvmat"};
+	};
+
+	class Unesennye_DVD_R : Unesennye_Media_Base
+	{
+		scope = 2;
+		displayName = "$STR_Unesennye_DVD_R";
+		descriptionShort = "$STR_Unesennye_DVD_R_Desc";
+		varQuantityInit = 1;
+		hiddenSelectionsTextures[] = {"unesennye\data\textures\dvd_r_co.paa"};
+		hiddenSelectionsMaterials[] = {"unesennye\data\materials\dvd_r.rvmat"};
 	};
 
 	class Transmitter_Base;
