@@ -1,17 +1,46 @@
 # UNESENNYE CLIENT v1.3.1
 
-**Author:** KRa Tos (Константин)
+**Автор:** KRa Tos (Константин)
 
-## Music GUI
+Клиентский мод системы музыки Unesennye.
+
+**Требует серверный мод** `@unesennye_servermod` (иначе handshake отключит игрока).
+
+## GUI меню музыки
 
 Layout: `gui/layouts/unesennye_music.layout`
 
-Open in-game:
-- Look at radio/car with SD slot → action **Open Unesennye Music**
+### Как открыть в игре
 
-Menu controls:
-- Track list (select / double-click to play)
-- **Play** / **Stop** / **Prev** / **Next**
-- **X** close
+Посмотрите на рацию или машину со слотом SD → действие **Open Unesennye Music**.
 
-Requires server mod `@unesennye_servermod`.
+### Управление в меню
+
+- список треков (выбор / двойной клик — воспроизведение)
+- **Play** — играть
+- **Stop** — остановить
+- **Prev** / **Next** — предыдущий / следующий трек
+- **X** — закрыть
+
+## Предметы
+
+- `Unesennye_SD_Card` / `Unesennye_SD_Card_Empty` — SD-карта
+- `Unesennye_Cassette` — кассета
+- `Unesennye_Disk` — диск
+
+Quantity на карте = ID плейлиста.
+
+## Действия
+
+- Вставить носитель
+- Извлечь носитель
+- Воспроизвести / остановить
+- Открыть меню музыки
+
+## Запуск (клиент)
+
+```
+-mod=@unesennye;@unesennye_music_db
+```
+
+**Автор:** KRa Tos (Константин)
