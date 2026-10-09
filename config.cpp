@@ -1,4 +1,4 @@
-// Author: KRa Tos (Константин) | Project: Unesennye Music System v1.3.0
+// Author: KRa Tos (Константин) | Project: Unesennye Music System v1.3.2
 // Do not remove this header. Unauthorized redistribution is prohibited.
 
 class CfgPatches
@@ -20,7 +20,7 @@ class CfgMods
 		name = "Unesennye Music System";
 		credits = "KRa Tos (Константин)";
 		author = "KRa Tos (Константин)";
-		version = "1.3.0";
+		version = "1.3.2";
 		type = "mod";
 		dependencies[] = {"Game", "World", "Mission"};
 		class defs
@@ -46,11 +46,10 @@ class CfgVehicles
 {
 	class Inventory_Base;
 
-	class Unesennye_SD_Card_Empty : Inventory_Base
+	// ---- Базовый класс носителя ----
+	class Unesennye_Media_Base : Inventory_Base
 	{
-		scope = 2;
-		displayName = "$STR_Unesennye_SD_Empty";
-		descriptionShort = "$STR_Unesennye_SD_Empty_Desc";
+		scope = 0;
 		model = "\dz\gear\tools\battery.p3d";
 		weight = 15;
 		itemSize[] = {1, 1};
@@ -58,27 +57,48 @@ class CfgVehicles
 		varQuantityInit = 0;
 		varQuantityMin = 0;
 		varQuantityMax = 99;
+		hiddenSelections[] = {"zbytek"};
+		hiddenSelectionsTextures[] = {"unesennye\data\textures\sd_card_empty_co.paa"};
+		hiddenSelectionsMaterials[] = {"unesennye\data\materials\sd_card_empty.rvmat"};
 	};
 
-	class Unesennye_SD_Card : Unesennye_SD_Card_Empty
+	class Unesennye_SD_Card_Empty : Unesennye_Media_Base
 	{
+		scope = 2;
+		displayName = "$STR_Unesennye_SD_Empty";
+		descriptionShort = "$STR_Unesennye_SD_Empty_Desc";
+		hiddenSelectionsTextures[] = {"unesennye\data\textures\sd_card_empty_co.paa"};
+		hiddenSelectionsMaterials[] = {"unesennye\data\materials\sd_card_empty.rvmat"};
+	};
+
+	class Unesennye_SD_Card : Unesennye_Media_Base
+	{
+		scope = 2;
 		displayName = "$STR_Unesennye_SD";
 		descriptionShort = "$STR_Unesennye_SD_Desc";
 		varQuantityInit = 1;
+		hiddenSelectionsTextures[] = {"unesennye\data\textures\sd_card_co.paa"};
+		hiddenSelectionsMaterials[] = {"unesennye\data\materials\sd_card.rvmat"};
 	};
 
-	class Unesennye_Cassette : Unesennye_SD_Card_Empty
+	class Unesennye_Cassette : Unesennye_Media_Base
 	{
+		scope = 2;
 		displayName = "$STR_Unesennye_Cassette";
 		descriptionShort = "$STR_Unesennye_Cassette_Desc";
 		varQuantityInit = 1;
+		hiddenSelectionsTextures[] = {"unesennye\data\textures\cassette_co.paa"};
+		hiddenSelectionsMaterials[] = {"unesennye\data\materials\cassette.rvmat"};
 	};
 
-	class Unesennye_Disk : Unesennye_SD_Card_Empty
+	class Unesennye_Disk : Unesennye_Media_Base
 	{
+		scope = 2;
 		displayName = "$STR_Unesennye_Disk";
 		descriptionShort = "$STR_Unesennye_Disk_Desc";
 		varQuantityInit = 1;
+		hiddenSelectionsTextures[] = {"unesennye\data\textures\disk_co.paa"};
+		hiddenSelectionsMaterials[] = {"unesennye\data\materials\disk.rvmat"};
 	};
 
 	class Transmitter_Base;

@@ -1,46 +1,31 @@
-# UNESENNYE CLIENT v1.3.1
+# UNESENNYE CLIENT v1.3.2
 
 **Автор:** KRa Tos (Константин)
 
 Клиентский мод системы музыки Unesennye.
 
-**Требует серверный мод** `@unesennye_servermod` (иначе handshake отключит игрока).
+**Требует** `@unesennye_servermod` на сервере.
 
-## GUI меню музыки
+## Текстуры предметов (v1.3.2)
 
-Layout: `gui/layouts/unesennye_music.layout`
+Папка `data/textures/` + материалы `data/materials/`.
 
-### Как открыть в игре
+1. `python tools/generate_item_textures.py` (нужен Pillow) **или** `python tools/install_textures.py`
+2. Конвертация PNG/TGA → **PAA** в DayZ TexView2
+3. Упаковка PBO
 
-Посмотрите на рацию или машину со слотом SD → действие **Open Unesennye Music**.
+Подробнее: `data/textures/README_TEXTURES.md`
 
-### Управление в меню
+## GUI
 
-- список треков (выбор / двойной клик — воспроизведение)
-- **Play** — играть
-- **Stop** — остановить
-- **Prev** / **Next** — предыдущий / следующий трек
-- **X** — закрыть
+`gui/layouts/unesennye_music.layout` — меню выбора треков.
+
+Действие: **Open Unesennye Music** на рации/машине со слотом SD.
 
 ## Предметы
 
-- `Unesennye_SD_Card` / `Unesennye_SD_Card_Empty` — SD-карта
-- `Unesennye_Cassette` — кассета
-- `Unesennye_Disk` — диск
-
-Quantity на карте = ID плейлиста.
-
-## Действия
-
-- Вставить носитель
-- Извлечь носитель
-- Воспроизвести / остановить
-- Открыть меню музыки
-
-## Запуск (клиент)
-
-```
--mod=@unesennye;@unesennye_music_db
-```
+- SD-карта / пустая SD-карта
+- Кассета
+- Диск
 
 **Автор:** KRa Tos (Константин)
