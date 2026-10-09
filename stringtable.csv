@@ -1,0 +1,14 @@
+Language,original,english,russian
+STR_Unesennye_Slot_SD,SD Card,SD Card,SD-карта
+STR_Unesennye_SD_Empty,SD Card (Empty),SD Card (Empty),SD-карта (пустая)
+STR_Unesennye_SD_Empty_Desc,Empty media for Unesennye radio.,Empty media for Unesennye radio.,Пустой носитель для радио Unesennye.
+STR_Unesennye_SD,SD Card,SD Card,SD-карта
+STR_Unesennye_SD_Desc,Music SD card. Quantity = playlist ID.,Music SD card. Quantity = playlist ID.,SD-карта с музыкой. Quantity = ID плейлиста.
+STR_Unesennye_Cassette,Cassette,Cassette,Кассета
+STR_Unesennye_Cassette_Desc,Audio cassette for Unesennye players.,Audio cassette for Unesennye players.,Аудиокассета для плееров Unesennye.
+STR_Unesennye_Disk,Disk,Disk,Диск
+STR_Unesennye_Disk_Desc,Music disk for Unesennye players.,Music disk for Unesennye players.,Музыкальный диск для плееров Unesennye.
+STR_Unesennye_Action_Insert,Insert media,Insert media,Вставить носитель
+STR_Unesennye_Action_Eject,Eject media,Eject media,Извлечь носитель
+STR_Unesennye_Action_Play,Play track,Play track,Воспроизвести
+STR_Unesennye_Action_Stop,Stop track,Stop track,Остановить

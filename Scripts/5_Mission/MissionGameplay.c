@@ -1,13 +1,10 @@
-// Author: KRa Tos (Константин) | Project: Unesennye Music System v1.2.4
-// Do not remove this header. Unauthorized redistribution is prohibited.
-
+// Author: KRa Tos (Константин) | Project: Unesennye Music System v1.3.0
 modded class MissionGameplay
 {
 	override void OnInit()
 	{
 		super.OnInit();
 		UnesennyeClientManager.GetInstance();
-		Print("[Unesennye Client] MissionGameplay.OnInit | Author: KRa Tos (Константин)");
 	}
 
 	override void OnMissionStart()
@@ -16,10 +13,7 @@ modded class MissionGameplay
 		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(StartHS, 2000, false);
 	}
 
-	void StartHS()
-	{
-		UnesennyeClientManager.GetInstance().StartHandshake();
-	}
+	void StartHS() { UnesennyeClientManager.GetInstance().StartHandshake(); }
 
 	override void OnRPC(PlayerIdentity sender, Object target, int rpc_type, ParamsReadContext ctx)
 	{
@@ -28,56 +22,44 @@ modded class MissionGameplay
 			case UnesennyeConstants.HS_RESPONSE:
 				UnesennyeClientManager.GetInstance().OnHandshakeResponse();
 				break;
-
 			case UnesennyeConstants.AUTH_FAIL:
 				UnesennyeClientManager.GetInstance().BlockAndDisconnect();
 				break;
-
 			case UnesennyeConstants.BROADCAST_PLAY:
 			{
-				Param1<string> playData;
-				if (ctx.Read(playData))
-					UnesennyeClientManager.GetInstance().PlaySoundSet(playData.param1);
-				break;
-			}
-
-			case UnesennyeConstants.RADIO_BROADCAST:
-			{
-				// Param3: playlistId, trackName, soundSetName
-				Param3<int, string, string> radioData;
-				if (ctx.Read(radioData))
+				Param1<string> p1;
+				if (ctx.Read(p1))
 				{
-					string soundSet = radioData.param3;
-					if (soundSet == "")
-						soundSet = radioData.param2;
-					UnesennyeClientManager.GetInstance().PlaySoundSet(soundSet);
+					vector pos = "0 0 0";
+					if (target) pos = target.GetPosition();
+					UnesennyeClientManager.GetInstance().PlaySoundSetAt(p1.param1, pos);
 				}
 				break;
 			}
-
+			case UnesennyeConstants.RADIO_BROADCAST:
 			case UnesennyeConstants.ALBUM_BROADCAST:
 			{
-				Param1<string> albumData;
-				if (ctx.Read(albumData))
-					UnesennyeClientManager.GetInstance().PlaySoundSet(albumData.param1);
+				Param3<int, string, string> p3;
+				if (ctx.Read(p3))
+				{
+					string ss = p3.param3;
+					if (ss == "") ss = p3.param2;
+					vector pos2 = "0 0 0";
+					if (target) pos2 = target.GetPosition();
+					else
+					{
+						PlayerBase pb = PlayerBase.Cast(GetGame().GetPlayer());
+						if (pb) pos2 = pb.GetPosition();
+					}
+					UnesennyeClientManager.GetInstance().PlaySoundSetAt(ss, pos2);
+				}
 				break;
 			}
-
 			case UnesennyeConstants.BROADCAST_STOP:
 			case UnesennyeConstants.RADIO_BROADCAST_STOP:
 				UnesennyeClientManager.GetInstance().StopSound();
 				break;
-
-			case UnesennyeConstants.TRACK_LIST_RESP:
-			case UnesennyeConstants.ALBUM_TRACKLIST_RESP:
-			{
-				Param1<string> listData;
-				if (ctx.Read(listData))
-					Print("[Unesennye Client] Track list: " + listData.param1);
-				break;
-			}
 		}
-
 		super.OnRPC(sender, target, rpc_type, ctx);
 	}
 };
