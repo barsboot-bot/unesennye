@@ -1,4 +1,4 @@
-// Author: KRa Tos (Константин) | Project: Unesennye Music System v1.3.0
+// Author: KRa Tos (Константин) | Project: Unesennye Music System v1.3.1
 modded class ActionConstructor
 {
 	override void RegisterActions(TTypenameArray actions)
@@ -8,5 +8,6 @@ modded class ActionConstructor
 		actions.Insert(ActionUnesennyeEjectMedia);
 		actions.Insert(ActionUnesennyePlayTrack);
 		actions.Insert(ActionUnesennyeStopTrack);
+		actions.Insert(ActionUnesennyeOpenMenu);
 	}
 };

@@ -1,13 +1,17 @@
-# UNESENNYE CLIENT v1.3.0
+# UNESENNYE CLIENT v1.3.1
 
 **Author:** KRa Tos (Константин)
 
-## New
-- Actions: insert / eject / play / stop media
-- Cassette + Disk items
-- Positional audio at radio/car
-- stringtable.csv (EN/RU)
-- More vehicle attachment slots
-- Scripts under Unesennye/ subfolders
+## Music GUI
 
-Requires `@unesennye_servermod` on server.
+Layout: `gui/layouts/unesennye_music.layout`
+
+Open in-game:
+- Look at radio/car with SD slot → action **Open Unesennye Music**
+
+Menu controls:
+- Track list (select / double-click to play)
+- **Play** / **Stop** / **Prev** / **Next**
+- **X** close
+
+Requires server mod `@unesennye_servermod`.

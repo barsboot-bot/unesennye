@@ -1,4 +1,4 @@
-// Author: KRa Tos (Константин) | Project: Unesennye Music System v1.3.0
+// Author: KRa Tos (Константин) | Project: Unesennye Music System v1.3.1
 class UnesennyeConstants
 {
 	static const int HS_REQUEST = 100;
@@ -28,7 +28,8 @@ class UnesennyeConstants
 	static const string SD_CARD_CLASS = "Unesennye_SD_Card";
 	static const string SD_CARD_EMPTY = "Unesennye_SD_Card_Empty";
 	static const string SD_SLOT_NAME = "Unesennye_SDCard";
+	static const string LAYOUT_MUSIC = "unesennye/gui/layouts/unesennye_music.layout";
 	static const string DISCONNECT_MSG = "Error: Required server mod 'unesennye_servermod' is missing.";
 	static const string AUTHOR = "KRa Tos (Константин)";
-	static const string MOD_VERSION = "1.3.0";
+	static const string MOD_VERSION = "1.3.1";
 };

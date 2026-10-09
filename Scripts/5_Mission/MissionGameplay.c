@@ -1,10 +1,11 @@
-// Author: KRa Tos (Константин) | Project: Unesennye Music System v1.3.0
+// Author: KRa Tos (Константин) | Project: Unesennye Music System v1.3.1
 modded class MissionGameplay
 {
 	override void OnInit()
 	{
 		super.OnInit();
 		UnesennyeClientManager.GetInstance();
+		UnesennyeUIManager.GetInstance();
 	}
 
 	override void OnMissionStart()
@@ -13,7 +14,10 @@ modded class MissionGameplay
 		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(StartHS, 2000, false);
 	}
 
-	void StartHS() { UnesennyeClientManager.GetInstance().StartHandshake(); }
+	void StartHS()
+	{
+		UnesennyeClientManager.GetInstance().StartHandshake();
+	}
 
 	override void OnRPC(PlayerIdentity sender, Object target, int rpc_type, ParamsReadContext ctx)
 	{
@@ -22,9 +26,11 @@ modded class MissionGameplay
 			case UnesennyeConstants.HS_RESPONSE:
 				UnesennyeClientManager.GetInstance().OnHandshakeResponse();
 				break;
+
 			case UnesennyeConstants.AUTH_FAIL:
 				UnesennyeClientManager.GetInstance().BlockAndDisconnect();
 				break;
+
 			case UnesennyeConstants.BROADCAST_PLAY:
 			{
 				Param1<string> p1;
@@ -36,6 +42,7 @@ modded class MissionGameplay
 				}
 				break;
 			}
+
 			case UnesennyeConstants.RADIO_BROADCAST:
 			case UnesennyeConstants.ALBUM_BROADCAST:
 			{
@@ -55,11 +62,22 @@ modded class MissionGameplay
 				}
 				break;
 			}
+
 			case UnesennyeConstants.BROADCAST_STOP:
 			case UnesennyeConstants.RADIO_BROADCAST_STOP:
 				UnesennyeClientManager.GetInstance().StopSound();
 				break;
+
+			case UnesennyeConstants.TRACK_LIST_RESP:
+			case UnesennyeConstants.ALBUM_TRACKLIST_RESP:
+			{
+				Param1<string> listData;
+				if (ctx.Read(listData))
+					UnesennyeUIManager.GetInstance().OnTrackListResponse(listData.param1);
+				break;
+			}
 		}
+
 		super.OnRPC(sender, target, rpc_type, ctx);
 	}
 };

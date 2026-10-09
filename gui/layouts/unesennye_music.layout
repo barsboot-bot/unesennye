@@ -1,0 +1,240 @@
+FrameWidgetClass RootFrame {
+ clipchildren 0
+ ignorepointer 0
+ position 0 0
+ size 1 1
+ hexactpos 1
+ vexactpos 1
+ hexactsize 1
+ vexactsize 1
+ {
+  PanelWidgetClass Backdrop {
+   ignorepointer 0
+   color 0 0 0 0.55
+   position 0 0
+   size 1 1
+   hexactpos 1
+   vexactpos 1
+   hexactsize 1
+   vexactsize 1
+  }
+  PanelWidgetClass PanelMain {
+   clipchildren 0
+   ignorepointer 0
+   color 0.08 0.09 0.11 0.96
+   position 0.5 0.5
+   size 420 380
+   halign center_ref
+   valign center_ref
+   hexactpos 0
+   vexactpos 0
+   hexactsize 1
+   vexactsize 1
+   {
+    PanelWidgetClass HeaderBar {
+     ignorepointer 1
+     color 0.12 0.45 0.28 1
+     position 0 0
+     size 1 36
+     hexactpos 1
+     vexactpos 1
+     hexactsize 0
+     vexactsize 1
+     {
+      TextWidgetClass Title {
+       ignorepointer 1
+       position 12 0
+       size 300 36
+       hexactpos 1
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       text "Unesennye Music"
+       font "gui/fonts/sdf_MetronBook24"
+       "exact text" 0
+       "size to text h" 0
+       "size to text v" 0
+       "text halign" center
+       "text valign" center
+      }
+      ButtonWidgetClass BtnClose {
+       ignorepointer 0
+       color 0.7 0.15 0.15 1
+       position 0 4
+       size 28 28
+       halign right_ref
+       hexactpos 0
+       vexactpos 1
+       hexactsize 1
+       vexactsize 1
+       {
+        TextWidgetClass BtnCloseText {
+         ignorepointer 1
+         position 0 0
+         size 1 1
+         hexactpos 1
+         vexactpos 1
+         hexactsize 0
+         vexactsize 0
+         text "X"
+         font "gui/fonts/sdf_MetronBook24"
+         "text halign" center
+         "text valign" center
+        }
+       }
+      }
+     }
+    }
+    TextWidgetClass LblPlaylist {
+     ignorepointer 1
+     position 16 48
+     size 388 22
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "Playlist: —"
+     font "gui/fonts/sdf_MetronBook24"
+     "text valign" center
+    }
+    TextWidgetClass LblStatus {
+     ignorepointer 1
+     position 16 72
+     size 388 20
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "Status: Ready"
+     font "gui/fonts/sdf_MetronBook24"
+     "text valign" center
+    }
+    TextListboxWidgetClass TrackList {
+     ignorepointer 0
+     color 0.05 0.06 0.08 1
+     position 16 100
+     size 388 180
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     font "gui/fonts/sdf_MetronBook24"
+     "lines" 8
+    }
+    ButtonWidgetClass BtnPrev {
+     ignorepointer 0
+     color 0.18 0.2 0.24 1
+     position 16 296
+     size 90 36
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     {
+      TextWidgetClass BtnPrevText {
+       ignorepointer 1
+       position 0 0
+       size 1 1
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       text "Prev"
+       font "gui/fonts/sdf_MetronBook24"
+       "text halign" center
+       "text valign" center
+      }
+     }
+    }
+    ButtonWidgetClass BtnPlay {
+     ignorepointer 0
+     color 0.12 0.5 0.28 1
+     position 116 296
+     size 90 36
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     {
+      TextWidgetClass BtnPlayText {
+       ignorepointer 1
+       position 0 0
+       size 1 1
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       text "Play"
+       font "gui/fonts/sdf_MetronBook24"
+       "text halign" center
+       "text valign" center
+      }
+     }
+    }
+    ButtonWidgetClass BtnStop {
+     ignorepointer 0
+     color 0.45 0.2 0.15 1
+     position 216 296
+     size 90 36
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     {
+      TextWidgetClass BtnStopText {
+       ignorepointer 1
+       position 0 0
+       size 1 1
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       text "Stop"
+       font "gui/fonts/sdf_MetronBook24"
+       "text halign" center
+       "text valign" center
+      }
+     }
+    }
+    ButtonWidgetClass BtnNext {
+     ignorepointer 0
+     color 0.18 0.2 0.24 1
+     position 316 296
+     size 88 36
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     {
+      TextWidgetClass BtnNextText {
+       ignorepointer 1
+       position 0 0
+       size 1 1
+       hexactpos 1
+       vexactpos 1
+       hexactsize 0
+       vexactsize 0
+       text "Next"
+       font "gui/fonts/sdf_MetronBook24"
+       "text halign" center
+       "text valign" center
+      }
+     }
+    }
+    TextWidgetClass Footer {
+     ignorepointer 1
+     position 16 344
+     size 388 20
+     hexactpos 1
+     vexactpos 1
+     hexactsize 1
+     vexactsize 1
+     text "Author: KRa Tos (Константин)"
+     font "gui/fonts/sdf_MetronBook24"
+     "text halign" center
+     "text valign" center
+    }
+   }
+  }
+ }
+}
